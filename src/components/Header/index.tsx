@@ -2,13 +2,14 @@ import { Category, DescriptionMenu, HeaderBackground, HeroTitle, LinkMenu, NavCo
 import BackgroundHeaderImg from '../../assets/images/header_background.png'
 import Logo from '../../assets/images/logo.png'
 import { Link } from 'react-router-dom'
+import { Restaurants } from '../../pages/Home'
 
 export type Props = {
   type: 'home' | 'perfil'
-  restaurantImg?: string
+  restaurant?: Restaurants
 }
 
-const Header = ({ type, restaurantImg }: Props) => {
+const Header = ({ type, restaurant }: Props) => {
   if (type === 'perfil') {
     return (
       <>
@@ -27,10 +28,10 @@ const Header = ({ type, restaurantImg }: Props) => {
             </NavContainer>
           </div>
         </HeaderBackground>
-        <RestaurantBackground style={{ backgroundImage: `url(${restaurantImg as string})` }}>
+        <RestaurantBackground style={{ backgroundImage: `url(${restaurant?.capa})` }}>
           <div className='container'>
-            <Category as='h3'>Italiana</Category>
-            <HeroTitle>La Dolce Vita Trattoria</HeroTitle>
+            <Category as='h3'>{`${restaurant?.tipo[0].toUpperCase()}${restaurant?.tipo.substring(1)}`}</Category>
+            <HeroTitle>{restaurant?.titulo}</HeroTitle>
           </div>
         </RestaurantBackground>
       </>

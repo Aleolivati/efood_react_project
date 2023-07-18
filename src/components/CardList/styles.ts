@@ -14,4 +14,12 @@ export const CardsGrid = styled.ul<Omit<Props, 'cardItems'>>`
 
   export const Container = styled.div`
   background-color: ${colors.whiteBackground};
+
+  .visible {
+    display: flex;
+  }
+
+  .invisible {
+    display: none;
+  }
 `

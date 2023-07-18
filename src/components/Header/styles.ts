@@ -17,6 +17,17 @@ export const RestaurantBackground = styled.div`
   height: 100%;
   padding-top: 24px;
   padding-bottom: 32px;
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    content: '';
+  }
 `
 
 export const NavContainer = styled.nav`
@@ -64,6 +75,8 @@ export const Title = styled.h2`
 export const HeroTitle = styled(Title)`
   font-size: 32px;
   color: ${colors.white};
+  position: relative;
+  z-index: 1;
 `
 
 export const Category = styled(HeroTitle)`

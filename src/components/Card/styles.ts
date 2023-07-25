@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
 type Props = {
@@ -14,12 +14,34 @@ export const Container = styled.div<Props>`
   max-width: ${(props) => (props.type === 'modal' ? '1024px' : '')};
   max-height: ${(props) => (props.type === 'modal' ? '344px' : '')};
 
+  @media (max-width: ${breakpoints.desktop}) {
+    max-width: ${(props) => (props.type === 'modal' ? '768px' : '')};
+    max-height: ${(props) => (props.type === 'modal' ? '300px' : '')};
+  }
+
+  @media (max-width: 655px) {
+    max-width: ${(props) => (props.type === 'modal' ? '100%' : '')};
+    max-height: ${(props) => (props.type === 'modal' ? '100%' : '')};
+  }
+
   img {
     width: ${(props) => (props.type === 'modal' ? '280px' : '100%')};
     height: ${(props) => (props.type === 'modal' ? '280px' : '100%')};
     margin-right: ${(props) => (props.type === 'modal' ? '24px' : '')};
     max-height: ${(props) => (props.type === 'home' ? '217px' : props.type === 'perfil' ? '167px' : '')};
     object-fit: fill;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      width: ${(props) => (props.type === 'modal' ? '200px' : '100%')};
+      height: ${(props) => (props.type === 'modal' ? '200px' : '100%')};
+    }
+
+    @media (max-width: 655px) {
+      width: ${(props) => (props.type === 'modal' ? '100%' : '')};
+      height: ${(props) => (props.type === 'modal' ? '50%' : '')};
+      margin-right: 0;
+      margin-top: ${(props) => (props.type === 'modal' ? '8px' : '')};
+    }
   }
 `
 
@@ -38,7 +60,16 @@ export const CardContainer = styled.div<Props>`
   ${ButtonContainer} {
     max-width: ${(props) => (props.type === 'home' ? '82px' : '')};
     margin-bottom: ${(props) => (props.type === 'modal' ? 'auto' : '')};
-    margin-top: ${(props) => (props.type === 'modal' ? '' : 'auto')}
+    margin-top: ${(props) => (props.type === 'modal' ? '' : 'auto')};
+
+    @media (max-width: 655px) {
+      width: ${(props) => (props.type === 'modal' ? '100%' : '')};
+    }
+  }
+
+  @media (max-width: 655px) {
+    flex-direction: column;
+    align-items: ${(props) => (props.type === 'modal' ? 'center' : '')};
   }
 `
 
@@ -70,6 +101,15 @@ export const Title = styled.h3<Props>`
   margin-top: ${(props) => (props.type === 'modal' ? '' : '8px')};
   font-weight: 700;
   font-size: ${(props) => (props.type === 'home' ? '18px' : '16px')};
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 14px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-top: 10px;
+  }
+
 `
 
 export const Description = styled.p<Props>`
@@ -77,6 +117,10 @@ export const Description = styled.p<Props>`
   font-size: 14px;
   line-height: 22px;
   max-width: 656px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 12px;
+  }
 `
 
 export const CloseButton = styled.div`

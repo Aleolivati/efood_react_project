@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { open } from '../../store/reducers/cart'
+import { Restaurants } from '../../pages/Home'
 import { Category, DescriptionMenu, HeaderBackground, HeroTitle, LinkMenu, NavContainer, RestaurantBackground, Title } from './styles'
 import BackgroundHeaderImg from '../../assets/images/header_background.png'
 import Logo from '../../assets/images/logo.png'
-import { Link } from 'react-router-dom'
-import { Restaurants } from '../../pages/Home'
 
 export type Props = {
   type: 'home' | 'perfil'
@@ -10,6 +13,13 @@ export type Props = {
 }
 
 const Header = ({ type, restaurant }: Props) => {
+  const { items } = useSelector((state: RootReducer) => state.cart)
+  const dispatch = useDispatch()
+
+  const openCart = () => {
+    dispatch(open())
+  }
+
   if (type === 'perfil') {
     return (
       <>
@@ -23,7 +33,7 @@ const Header = ({ type, restaurant }: Props) => {
                 <Link to='/'><img src={Logo} /></Link>
               </LinkMenu>
               <LinkMenu className="right">
-                <a href="#">0 produto(s) no seu carrinho</a>
+                <a onClick={openCart}>{items.length} produto(s) no seu carrinho</a>
               </LinkMenu>
             </NavContainer>
           </div>

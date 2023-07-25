@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { Props } from '.'
 
 export const CardsGrid = styled.ul<Omit<Props, 'cardItems'>>`
@@ -10,6 +10,18 @@ export const CardsGrid = styled.ul<Omit<Props, 'cardItems'>>`
   padding-bottom: 120px;
   column-gap: ${(props) => (props.type === 'perfil' ? '40px' : '80px')};
   row-gap: ${(props) => (props.type === 'perfil' ? '40px' : '48px')};
+
+  @media (max-width: ${breakpoints.desktop}) {
+    column-gap: ${(props) => (props.type === 'perfil' ? '40px' : '30px')};
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+  }
   `
 
   export const Container = styled.div`

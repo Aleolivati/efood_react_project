@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { Props } from '.'
 
 export const HeaderBackground = styled.div<Omit<Props, 'restaurantImg'>>`
@@ -45,10 +45,12 @@ export const LinkMenu = styled.div`
 
   &.center {
     justify-content: center;
+    margin: 0 5px;
   }
 
   &.right {
     justify-content: end;
+    text-align: end;
   }
 
   a {
@@ -56,6 +58,15 @@ export const LinkMenu = styled.div`
     color: ${colors.main};
     font-size: 18px;
     font-weight: 900;
+    cursor: pointer;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: 16px;
+    }
+
+    @media (max-width: ${breakpoints.mobile}) {
+      font-size: 12px;
+    }
   }
 `
 
@@ -70,6 +81,14 @@ export const Title = styled.h2`
   font-size: 36px;
   font-weight: 900;
   color: ${colors.main};
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 30px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 24px;
+  }
 `
 
 export const HeroTitle = styled(Title)`
@@ -77,6 +96,10 @@ export const HeroTitle = styled(Title)`
   color: ${colors.white};
   position: relative;
   z-index: 1;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    font-size: 28px;
+  }
 `
 
 export const Category = styled(HeroTitle)`

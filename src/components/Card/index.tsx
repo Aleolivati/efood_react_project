@@ -13,13 +13,14 @@ export type Props = {
   stars?: string
   tag?: string
   onClick?: () => void
+  buttonOnClick?: () => void
   price?: string
   id?: number
 }
 
 
 
-const Card = ({ type, image, title, description, stars, tag, onClick, price, id, portion }: Props) => {
+const Card = ({ type, image, title, description, stars, tag, onClick, price, id, portion, buttonOnClick }: Props) => {
 
   if (type === 'home') {
     return (
@@ -56,7 +57,7 @@ const Card = ({ type, image, title, description, stars, tag, onClick, price, id,
               <Title type={type}>{title}</Title>
               <Description type={type}>{description}</Description>
               <Description type={type}>{portion}</Description>
-              <Button type="secondary" title="Clique aqui pra saber mais sobre o restaurante">
+              <Button type="secondary" title="Clique aqui pra saber mais sobre o restaurante" onClick={buttonOnClick}>
                 {`Adicionar ao carrinho - ${price as string}`}
               </Button>
             </div>

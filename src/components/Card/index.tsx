@@ -1,83 +1,83 @@
 import Button from '../Button'
-import { CardContainer, CloseButton, Container, Description, Modal, StarContainer, TagContainer, Title, TitleContainer } from './styles'
+import * as S from './styles'
 import star from '../../assets/images/star.svg'
 import close from '../../assets/images/close.png'
 import Tag from '../Tag'
 
-export type Props = {
+type Props = {
   type: 'home' | 'perfil' | 'modal'
-  image: string
+  image?: string
   title: string
   description: string
   portion?: string
   stars?: string
   tag?: string
   onClick?: () => void
-  buttonOnClick?: () => void
-  price?: string
   id?: number
+  children?: JSX.Element
 }
 
-
-
-const Card = ({ type, image, title, description, stars, tag, onClick, price, id, portion, buttonOnClick }: Props) => {
-
+const Card = ({ type, image, title, description, stars, tag, onClick, id, portion, children }: Props) => {
   if (type === 'home') {
     return (
-      <Container type='home'>
+      <S.Container type="home">
         <img src={image} />
-        <TagContainer>
-            <Tag>{tag as string}</Tag>
-        </TagContainer>
-        <CardContainer type={type}>
-          <TitleContainer>
-            <Title type={type}>{title}</Title>
-            <StarContainer>
-              <Title type={type}>{stars}</Title>
+        <S.TagContainer>
+          <Tag>{tag as string}</Tag>
+        </S.TagContainer>
+        <S.CardContainer type={type}>
+          <S.TitleContainer>
+            <S.Title type={type}>{title}</S.Title>
+            <S.StarContainer>
+              <S.Title type={type}>{stars}</S.Title>
               <img src={star} alt="Estrela" />
-            </StarContainer>
-          </TitleContainer>
-          <Description type={type}>{description}</Description>
-          <Button as="Link" to={`/perfil/${id}`} type="primary" title="Clique aqui pra saber mais sobre o restaurante">
+            </S.StarContainer>
+          </S.TitleContainer>
+          <S.Description type={type}>{description}</S.Description>
+          <Button
+            as="Link"
+            to={`/perfil/${id}`}
+            variant="primary"
+            title="Clique aqui pra saber mais sobre o restaurante"
+          >
             Saiba mais
           </Button>
-        </CardContainer>
-      </Container>
+        </S.CardContainer>
+      </S.Container>
     )
   }
 
   if (type === 'modal') {
     return (
-      <Modal>
-        <Container type='modal'>
-          <CardContainer type={type}>
-            <CloseButton style={{ backgroundImage: `url(${close})` }} onClick={onClick} />
+      <S.Modal>
+        <S.Container type="modal">
+          <S.CardContainer type={type}>
+            <S.CloseButton style={{ backgroundImage: `url(${close})` }} onClick={onClick} />
             <img src={image} />
             <div>
-              <Title type={type}>{title}</Title>
-              <Description type={type}>{description}</Description>
-              <Description type={type}>{portion}</Description>
-              <Button type="secondary" title="Clique aqui pra saber mais sobre o restaurante" onClick={buttonOnClick}>
-                {`Adicionar ao carrinho - ${price as string}`}
-              </Button>
+              <S.Title type={type}>{title}</S.Title>
+              <S.Description type={type}>{description}</S.Description>
+              <S.Description type={type}>{portion}</S.Description>
+              {children}
             </div>
-          </CardContainer>
-        </Container>
-        <div className='overlay' onClick={onClick}/>
-      </Modal>
-    )  }
+          </S.CardContainer>
+        </S.Container>
+        <div className="overlay" onClick={onClick} />
+      </S.Modal>
+    )
+  }
 
   return (
-    <Container type='perfil'>
-      <CardContainer type={type}>
+    <S.Container type="perfil">
+      <S.CardContainer type={type}>
         <img src={image} />
-        <Title type={type}>{title}</Title>
-        <Description type={type}>{description}</Description>
-        <Button type="secondary" title="Clique aqui pra saber mais sobre o restaurante" onClick={onClick}>
+        <S.Title type={type}>{title}</S.Title>
+        <S.Description type={type}>{description}</S.Description>
+        <Button variant="secondary" title="Clique aqui pra saber mais sobre o restaurante" onClick={onClick}>
           Adicionar ao carrinho
         </Button>
-      </CardContainer>
-    </Container>
+      </S.CardContainer>
+    </S.Container>
   )
 }
 

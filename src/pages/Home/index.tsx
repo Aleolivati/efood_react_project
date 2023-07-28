@@ -2,26 +2,8 @@ import CardList from '../../components/CardList'
 import Header from '../../components/Header'
 import { useGetRestaurantsQuery } from '../../services/api'
 
-export type Restaurants = {
-  id: number
-  titulo: string
-  destacado: string
-  tipo: string
-  avaliacao: string
-  descricao: string
-  capa: string
-  cardapio: [{
-    foto: string
-    preco: number
-    id: number
-    nome: string
-    descricao: string
-    porcao: string
-  }]
-}
-
 const Home = () => {
-  const { data: restaurants } = useGetRestaurantsQuery()
+  const { data: restaurants, isLoading } = useGetRestaurantsQuery()
   // const [restaurants, setRestaurants] = useState<Restaurants[]>([])
 
   // useEffect(() => {
@@ -34,7 +16,7 @@ const Home = () => {
   return (
     <>
       <Header type="home" />
-      <CardList type="home" cardItems={restaurants} />
+      <CardList isLoading={isLoading} type="home" cardItems={restaurants} />
     </>
   )
 }

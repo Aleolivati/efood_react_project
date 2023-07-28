@@ -2,6 +2,10 @@ import { styled } from 'styled-components'
 import { breakpoints, colors } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 
+type InputGroupProps = {
+  inputWidth?: string
+}
+
 export const CartContainer = styled.div`
   position: fixed;
   width: 100%;
@@ -51,6 +55,33 @@ export const Sidebar = styled.aside`
   max-width: 360px;
   width: 100%;
   padding: 32px 8px 0;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: ${colors.secondary};
+    margin-bottom: 16px;
+  }
+
+  .empty-cart {
+    p {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 22px;
+      text-align: center;
+      color: ${colors.secondary};
+      margin-bottom: 24px;
+    }
+  }
+
+  .success-text {
+    p {
+      font-size: 14px;
+      line-height: 22px;
+      color: ${colors.secondary};
+      margin-bottom: 24px;
+    }
+  }
 
   @media (max-width: ${breakpoints.mobile}) {
     max-width: 100%;
@@ -104,4 +135,58 @@ export const RemoveItem = styled.div`
   width: 16px;
   height: 16px;
   cursor: pointer;
+`
+
+export const FormContainer = styled.form`
+  display: block;
+
+  div {
+    &.is-invisible {
+      display: none;
+    }
+
+    &.is-visible {
+      display: block;
+    }
+
+    &.row {
+      display: flex;
+      gap: 32px;
+    }
+  }
+`
+
+export const ButtonsContainer = styled.div`
+  margin-top: 16px;
+
+  ${ButtonContainer} {
+    margin-bottom: 8px;
+  }
+`
+
+export const InputGroup = styled.div<InputGroupProps>`
+  display: flex;
+  flex-direction: column;
+
+  input {
+    width: ${(props) => props.inputWidth || '100%'};
+    height: 32px;
+    color: ${colors.gray};
+    background-color: ${colors.secondary};
+    font-size: 14px;
+    font-weight: 700;
+    padding: 8px;
+    border: 3px solid ${colors.secondary};
+    margin: 8px 0;
+
+    &.is-error {
+      border: 3px solid red;
+    }
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: 700;
+    color: ${colors.secondary};
+  }
 `

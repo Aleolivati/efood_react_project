@@ -2,6 +2,7 @@ import CardList from '../../components/CardList'
 import Header from '../../components/Header'
 import { useParams } from 'react-router-dom'
 import { useGetMenuRestaurantQuery } from '../../services/api'
+import Loader from '../../components/Loader'
 
 // const laDolceVitaTrattoria: CardItems[] = [
 //   {
@@ -58,7 +59,7 @@ const Perfil = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
   const { id } = useParams()
 
-  const { data: restaurant } = useGetMenuRestaurantQuery(id as string)
+  const { data: restaurant, isLoading } = useGetMenuRestaurantQuery(id as string)
   // const [cardapio, setCardapio] = useState<Restaurants>()
 
   // useEffect(() => {
@@ -68,16 +69,16 @@ const Perfil = () => {
   //     .catch(Error)
   // }, [id])
 
-  if (restaurant) {
-    return (
-      <>
-        <Header type="perfil" restaurant={restaurant} />
-        <CardList type="perfil" cardMenu={restaurant.cardapio} />
-      </>
-    )
+  if (!restaurant || isLoading) {
+    return <Loader />
   }
 
-  return (<h3>Carregando...</h3>)
+  return (
+    <>
+      <Header type="perfil" restaurant={restaurant} />
+      <CardList isLoading={isLoading} type="perfil" restaurantId={restaurant.id} cardMenu={restaurant.cardapio} />
+    </>
+  )
 }
 
 export default Perfil

@@ -1,8 +1,9 @@
 import { styled } from 'styled-components'
 import { breakpoints, colors } from '../../styles'
 import { Props } from '.'
+import { CardContainer } from '../Card/styles'
 
-export const CardsGrid = styled.ul<Omit<Props, 'cardItems'>>`
+export const CardsGrid = styled.ul<Omit<Props, 'cardItems' | 'isLoading' | 'restaurantId'>>`
   display: grid;
 
   grid-template-columns: ${(props) => (props.type === 'perfil' ? '1fr 1fr 1fr' : '1fr 1fr')};
@@ -27,11 +28,36 @@ export const CardsGrid = styled.ul<Omit<Props, 'cardItems'>>`
   export const Container = styled.div`
   background-color: ${colors.whiteBackground};
 
-  .visible {
+  .is-visible {
     display: flex;
   }
 
-  .invisible {
+  .is-invisible {
     display: none;
+  }
+`
+
+export const ModalContainer = styled.div`
+  .overlay {
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+    ${CardContainer} {
+      align-items: center;
+      text-align: center;
+
+      p {
+        padding-bottom: 0;
+      }
+    }
+
+    .buttonContainer {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+    }
   }
 `

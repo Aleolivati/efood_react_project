@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { ButtonContainer } from './styles'
 
 type Props = {
-  type: 'primary' | 'secondary'
+  variant: 'primary' | 'secondary'
+  type?: 'button' | 'submit'
   title: string
   onClick?: () => void
   children: string
@@ -10,16 +11,16 @@ type Props = {
   to?: string
 }
 
-const Button = ({ as, to, type, title, onClick, children }: Props) => {
+const Button = ({ as, to, type, title, onClick, children, variant }: Props) => {
   if (as === 'Link') {
     return (
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      <ButtonContainer as={Link} to={to as string} type={type} title={title}>{children}</ButtonContainer>
+      <ButtonContainer as={Link} to={to as string} variant={variant} title={title}>{children}</ButtonContainer>
       )
   }
 
   return (
-    <ButtonContainer type={type} title={title} onClick={onClick}>{children}</ButtonContainer>
+    <ButtonContainer variant={variant} type={type} title={title} onClick={onClick}>{children}</ButtonContainer>
   )
 }
 

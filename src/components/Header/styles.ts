@@ -41,6 +41,15 @@ export const LinkMenu = styled.div`
 
   &.left {
     justify-content: start;
+
+    @media (max-width: ${breakpoints.mobile}) {
+      justify-content: center;
+
+      svg {
+        width: 35px;
+        height: 35px;
+      }
+    }
   }
 
   &.center {
@@ -50,22 +59,54 @@ export const LinkMenu = styled.div`
 
   &.right {
     justify-content: end;
+    align-items: center;
     text-align: end;
+
+    @media (max-width: ${breakpoints.mobile}) {
+      justify-content: center;
+
+      svg {
+        width: 35px;
+        height: 35px;
+      }
+    }
   }
 
-  a {
+  p {
+    margin-right: 8px;
+  }
+
+  a, span {
     text-decoration: none;
     color: ${colors.main};
     font-size: 18px;
     font-weight: 900;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .desktop {
+      display: block;
+    }
+
+    .mobile {
+      display: none;
+    }
 
     @media (max-width: ${breakpoints.tablet}) {
       font-size: 16px;
     }
 
     @media (max-width: ${breakpoints.mobile}) {
-      font-size: 12px;
+      font-size: 18px;
+
+      .desktop {
+        display: none;
+      }
+
+      .mobile {
+        display: inline-flex;
+      }
     }
   }
 `

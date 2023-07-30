@@ -8,6 +8,16 @@ export const HeaderBackground = styled.div<Omit<Props, 'restaurantImg'>>`
   height: 100%;
   padding-top: 64px;
   padding-bottom: ${(props) => (props.type === 'perfil' ? '64px' : '40px')};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-height: ${(props) => (props.type === 'perfil' ? '100px' : '270px')};
+    display: ${(props) => (props.type === 'perfil' ? 'flex' : '')};
+    align-items: ${(props) => (props.type === 'perfil' ? 'center' : '')};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    max-height: ${(props) => (props.type === 'perfil' ? '128px' : '210px')};
+  }
 `
 
 export const RestaurantBackground = styled.div`
@@ -27,6 +37,14 @@ export const RestaurantBackground = styled.div`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     content: '';
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    max-height: 200px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    max-height: 150px;
   }
 `
 
@@ -116,6 +134,18 @@ export const DescriptionMenu = styled.div`
   justify-content: center;
   margin-top: 136px;
   text-align: center;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-top: 45px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-top: 25px;
+
+    h2 {
+      font-size: 18px;
+    }
+  }
 `
 
 export const Title = styled.h2`
@@ -146,4 +176,12 @@ export const HeroTitle = styled(Title)`
 export const Category = styled(HeroTitle)`
   font-weight: 100;
   margin-bottom: 160px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    margin-bottom: 50px;
+  }
 `

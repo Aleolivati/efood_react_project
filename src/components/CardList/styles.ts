@@ -18,10 +18,14 @@ export const CardsGrid = styled.ul<Omit<Props, 'cardItems' | 'isLoading' | 'rest
 
   @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr 1fr;
+    padding-top: 40px;
+    row-gap: 40px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
     grid-template-columns: 1fr;
+    padding-top: 30px;
+    row-gap: 30px;
   }
   `
 
